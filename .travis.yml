@@ -9,11 +9,11 @@ script:
 # Build image
   - docker build -t  algoretum/django .
 # Test image
-  - docker run algoretum/django python --version
+  - docker run algoretum/django python3 --version
 
 # Push image
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    docker push algoretum/django
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push algoretum/django;
     fi
 
