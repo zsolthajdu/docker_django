@@ -12,8 +12,8 @@ script:
   - docker run algoretum/django python --version
 
 # Push image
- - if [ "$TRAVIS_BRANCH" == "master" ] ; then
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
     docker push algoretum/django
-  fi
+    fi
 
