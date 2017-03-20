@@ -16,7 +16,7 @@ script:
   - >
     if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    TAG=tag1
+    TAG="tag1"
     docker tag algoretum/django algoretum/django:$TAG
     docker push algoretum/django:$TAG
     docker push algoretum/django
