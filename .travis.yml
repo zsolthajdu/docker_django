@@ -11,10 +11,12 @@ script:
 # Test image
   - docker run algoretum/django python3 --version
 
+# TAG=$(grep "ENV DJANGO_VER" Dockerfile | awk 'NF>1{print $NF}')
 # Push image
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    TAG=$(grep "ENV DJANGO_VER" Dockerfile | awk 'NF>1{print $NF}')
+  - >
+    if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    TAG=tag1
     docker tag algoretum/django algoretum/django:$TAG
     docker push algoretum/django:$TAG
     docker push algoretum/django
