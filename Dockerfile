@@ -6,6 +6,9 @@
 # Set the base image to Ubuntu
 FROM debian:jessie
 
+ENV DJANGO_VER 110
+ENV PYTHON_VER 34
+
 # File Author / Maintainer
 MAINTAINER z_hajdu@yahoo.com
 
@@ -24,7 +27,7 @@ RUN apt-get install -y python3-pip
 
 # Get pip to download and install requirements:
 
-RUN pip3 install django 
+RUN pip3 install django=1.10
 
 #install MySQL in noninteractive way
 RUN export DEBIAN_FRONTEND=noninteractive

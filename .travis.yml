@@ -14,6 +14,9 @@ script:
 # Push image
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push algoretum/django;
+    TAG=$(grep "ENV DJANGO_VER" Dockerfile | awk 'NF>1{print $NF}')
+    docker tag algoretum/django algoretum/django:$TAG
+    docker push algoretum/django:$TAG
+    docker push algoretum/django
     fi
 
