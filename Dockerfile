@@ -41,11 +41,12 @@ RUN apt-get install -qy libmysqlclient-dev
 RUN pip3 install pymysql mysqlclient
 
 COPY start.sh /
+RUN chmod a+x /start.sh
 
 #expose the port
 EXPOSE 80
 
-# Configure apache configuration for the my application
+# Configure apache to run django app under /usr/src/app
 RUN echo "WSGIScriptAlias / /usr/src/app/THE_SITE_DIR/wsgi.py" >> /etc/apache2/apache2.conf && \
 echo "WSGIPythonPath /usr/src/app/" >> /etc/apache2/apache2.conf &&  \
 echo "Alias /static/ /usr/src/app/static/" >> /etc/apache2/apache2.conf &&  \
@@ -60,7 +61,7 @@ echo "<Directory /usr/src/app/static/>" >> /etc/apache2/apache2.conf &&  \
 echo "  Require all granted" >> /etc/apache2/apache2.conf && \
 echo "</Directory>" >> /etc/apache2/apache2.conf
 
-CMD ["/start.sh"]
+ENTRYPOINT ["/start.sh"]
 
 
 
