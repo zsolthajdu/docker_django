@@ -40,7 +40,7 @@ RUN apt-get install -qy libmysqlclient-dev
 
 RUN pip3 install pymysql mysqlclient
 
-COPY start.sh /usr/src/app
+COPY start.sh /
 
 #expose the port
 EXPOSE 80
@@ -60,7 +60,7 @@ echo "<Directory /usr/src/app/static/>" >> /etc/apache2/apache2.conf &&  \
 echo "  Require all granted" >> /etc/apache2/apache2.conf && \
 echo "</Directory>" >> /etc/apache2/apache2.conf
 
-CMD ["/usr/src/app/start.sh"]
+CMD ["/start.sh"]
 
 
 
