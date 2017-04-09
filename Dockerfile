@@ -39,9 +39,11 @@ RUN apt-get install -qy python-dev python3-dev
 RUN apt-get install -qy libmysqlclient-dev
 
 RUN pip3 install pymysql mysqlclient
+
+COPY start.sh /usr/src/app
+
 #expose the port
 EXPOSE 80
-#RUN a2enmod mod-wsgi-py3
 
 # Configure apache configuration for the my application
 RUN echo "WSGIScriptAlias / /usr/src/app/THE_SITE_DIR/wsgi.py" >> /etc/apache2/apache2.conf && \
@@ -58,6 +60,8 @@ echo "<Directory /usr/src/app/static/>" >> /etc/apache2/apache2.conf &&  \
 echo "  Require all granted" >> /etc/apache2/apache2.conf && \
 echo "</Directory>" >> /etc/apache2/apache2.conf
 
-CMD sed -ie s/THE_SITE_DIR/$SITE_DIR/g /etc/apache2/apache2.conf && service apache2 start
+CMD ["/usr/src/app/start.sh"]
+
+
 
 
