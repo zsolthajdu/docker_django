@@ -6,7 +6,7 @@
 # Set the base image to Ubuntu
 FROM debian:jessie
 
-ENV DJANGO_VER 110
+ENV DJANGO_VER 111
 ENV PYTHON_VER 34
 
 # The path where the django app is stored
@@ -28,17 +28,14 @@ RUN apt-get install -y python3-pip
 
 #RUN pip install --upgrade pip
 
-# Get pip to download and install requirements:
-
-RUN pip3 install django==1.10
-
 #install MySQL in noninteractive way
 RUN export DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get install -qy python-dev python3-dev
 RUN apt-get install -qy libmysqlclient-dev
 
-RUN pip3 install pymysql mysqlclient
+# Get pip to download and install requirements:
+RUN pip3 install -r requirements.txt
 
 COPY start.sh /
 RUN chmod a+x /start.sh
