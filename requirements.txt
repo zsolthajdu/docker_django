@@ -5,5 +5,4 @@ coreapi
 beautifulsoup4
 pymysql
 mysqlclient
-lxml
 
