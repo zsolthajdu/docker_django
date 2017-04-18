@@ -34,8 +34,9 @@ RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt-get install -qy python-dev python3-dev
 RUN apt-get install -qy libmysqlclient-dev
 
+COPY requirements.txt /
 # Get pip to download and install requirements:
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r /requirements.txt
 
 COPY start.sh /
 RUN chmod a+x /start.sh
