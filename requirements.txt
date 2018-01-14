@@ -7,7 +7,6 @@ pycrypto
 pymysql
 python-memcached
 lxml
-pymysql
 mysqlclient
 django-tagging
 markdown
