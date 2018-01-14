@@ -24,7 +24,7 @@ RUN apt-get install -y aptitude apt-utils apache2  libapache2-mod-wsgi-py3
 # Install Python and Basic Python Tools
 RUN apt-get install -y python3 wget
 
-RUN apt-get install -y python3-pip python3-lxml
+RUN apt-get install -y python3-pip python3-lxml vim
 
 #RUN pip install --upgrade pip
 
@@ -57,7 +57,8 @@ echo " </Files>" >> /etc/apache2/apache2.conf && \
 echo "</Directory>" >> /etc/apache2/apache2.conf && \
 echo "<Directory /usr/src/app/static/>" >> /etc/apache2/apache2.conf &&  \
 echo "  Require all granted" >> /etc/apache2/apache2.conf && \
-echo "</Directory>" >> /etc/apache2/apache2.conf
+echo "</Directory>" >> /etc/apache2/apache2.conf && \
+echo "WSGIPassAuthorization  On" >> /etc/apache2/mods-enabled/wsgi.conf
 
 ENTRYPOINT ["/start.sh"]
 
