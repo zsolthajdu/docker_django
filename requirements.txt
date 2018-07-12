@@ -1,11 +1,13 @@
 
-django==1.11
+django==2.0.4
 djangorestframework
 django-filter
 coreapi
 pycrypto
 pymysql
 python-memcached
+beautifulsoup4
+requests
 lxml
 mysqlclient
 django-tagging

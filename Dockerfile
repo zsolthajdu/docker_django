@@ -1,13 +1,13 @@
 #################################################
 # Dockerfile to build Python-Django WSGI Application Containers
-# Based on Debian Jessie
+# Based on Debian Stretch
 #
 
 # Set the base image to Ubuntu
-FROM debian:jessie
+FROM debian:stretch
 
-ENV DJANGO_VER 111
-ENV PYTHON_VER 34
+ENV DJANGO_VER 204
+ENV PYTHON_VER 35
 
 # The path where the django app is stored
 ENV APP_PATH /usr/src/app
@@ -31,8 +31,8 @@ RUN apt-get install -y python3-pip python3-lxml vim
 #install MySQL in noninteractive way
 RUN export DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get install -qy python-dev python3-dev
-RUN apt-get install -qy libmysqlclient-dev
+RUN apt-get install -qy -t stretch python-dev python3-dev
+RUN apt-get install -qy default-libmysqlclient-dev
 
 COPY requirements.txt /
 # Get pip to download and install requirements:
