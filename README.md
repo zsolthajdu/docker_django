@@ -1,4 +1,4 @@
-# docker_django  [![Build Status](https://travis-ci.org/zsolthajdu/docker_django.svg?branch=master)](https://travis-ci.org/zsolthajdu/docker_django)
+# docker_django  [![Build Status](https://travis-ci.org/zsolthajdu/docker_django.svg?branch=master)](https://travis-ci.org/zsolthajdu/docker_django)  [![Vulnerabilities](https://snyk.io/test/github/zsolthajdu/docker_django/badge.svg)](https://snyk.io/test/github/zsolthajdu/docker_django)
 Docker container build script to create a python3/django development image.
 
 ## Usage

@@ -1,9 +1,8 @@
 
-django==2.0.4
+django==2.0.8
 djangorestframework
 django-filter
 coreapi
-pycrypto
 pymysql
 python-memcached
 beautifulsoup4

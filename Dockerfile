@@ -6,7 +6,7 @@
 # Set the base image to Ubuntu
 FROM debian:stretch
 
-ENV DJANGO_VER 204
+ENV DJANGO_VER 208
 ENV PYTHON_VER 35
 
 # The path where the django app is stored
@@ -16,30 +16,25 @@ ENV APP_PATH /usr/src/app
 ENV SITE_DIR mysite
 
 # Update the sources list
-RUN apt-get update
+RUN apt-get update \
 
 # Install basic applications
-RUN apt-get install -y aptitude apt-utils apache2  libapache2-mod-wsgi-py3
-
+	&& apt-get install -y aptitude apt-utils apache2  libapache2-mod-wsgi-py3 \
 # Install Python and Basic Python Tools
-RUN apt-get install -y python3 wget
-
-RUN apt-get install -y python3-pip python3-lxml vim
-
-#RUN pip install --upgrade pip
-
 #install MySQL in noninteractive way
-RUN export DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get install -qy -t stretch python-dev python3-dev
-RUN apt-get install -qy default-libmysqlclient-dev
+	&& apt-get install -y python3 wget \
+	&& apt-get install -y python3-pip python3-lxml vim \
+	&& export DEBIAN_FRONTEND=noninteractive \
+	&& apt-get install -qy -t stretch python-dev python3-dev \
+	&& apt-get install -qy default-libmysqlclient-dev
 
 COPY requirements.txt /
 # Get pip to download and install requirements:
 RUN pip3 install -r /requirements.txt
 
 COPY start.sh /
-RUN chmod a+x /start.sh
+RUN chmod a+x /start.sh \
+	&& apt-get clean
 
 #expose the port
 EXPOSE 80
